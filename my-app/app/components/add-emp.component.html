@@ -1,0 +1,55 @@
+<div class="container">
+    <fieldset>
+        <legend >Add New Employee</legend>
+        <div class="alert alert-success alert-message" role="alert" *ngIf="addedEmp">
+          <span class="glyphicon glyphicon-remove" (click)="removeMsg()"></span>
+          <span > New employee {{addedEmp}} has been added </span>
+        </div>
+        <div class="control-group">
+            <form  #myForm="ngForm" class="form-horizontal" (ngSubmit)="addEmp(myForm)">
+              <div class="form-group">
+                <label for="empId" class="col-sm-2 control-label">ID</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" id="empId" placeholder="ID" required minlength="2" maxlength="10"
+                        [(ngModel)]="emp.id" #empId="ngModel" [ngModelOptions]="{standalone: true}">  <!-- [pattern] ="[0-9]+"  -->
+                </div>
+                <div class="col-sm-7 text-danger" *ngIf="empId.errors && (empId.dirty || empId.touched)" >
+                    <div [hidden]="!empId.errors.required">
+                      ID is required
+                    </div>
+                    <div [hidden]="!empId.errors.minlength">
+                      ID must be at least 2 characters long.
+                    </div>
+                    <div [hidden]="!empId.errors.maxlength">
+                      ID cannot be more than 10 characters long.
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="empName" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" id="empName" placeholder="Name" required
+                    [(ngModel)]="emp.name" #empName="ngModel" [ngModelOptions]="{standalone: true}" >
+                </div>
+                <div class="col-sm-7 text-danger" *ngIf="empName.errors && (empName.dirty || empName.touched)" >
+                    <div [hidden]="!empName.errors.required">
+                      Name is required
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="dept" class="col-sm-2 control-label">Dept</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" id="dept" placeholder="Department" 
+                    [(ngModel)]="emp.dept" [ngModelOptions]="{standalone: true}" >
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10 ">
+                  <button type="submit" class="btn btn-default btn-primary">Add</button>
+                </div>
+              </div>
+            </form>
+        </div>
+    </fieldset>
+</div>

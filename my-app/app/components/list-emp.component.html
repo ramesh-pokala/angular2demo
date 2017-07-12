@@ -1,0 +1,28 @@
+<div class="container">
+    <fieldset>
+        <legend >Employees List</legend>
+        <div class="control-group">
+            <div class="container-fluid">
+                <div class="content">
+                  <table class="table table-striped">
+                    <thead>
+                      <th>Emp ID</th>
+                      <th>Emp Name</th>
+                      <th>Dept</th>
+                      <th>Actions</th>
+                    </thead>
+                    <tr *ngFor="let each of empDetails; let index=index" [attr.data-index]="i">
+                      <td>{{each.id}}</td>
+                      <td>{{each.name}}</td>
+                      <td>{{each.dept}}</td>
+                      <td>
+                        <span class="glyphicon glyphicon-edit" routerLink="/modify/{{index}}"></span> &nbsp;
+                        <span class="glyphicon glyphicon-remove" (click)="remove(index)"></span>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+        </div>
+    </fieldset>
+</div>
